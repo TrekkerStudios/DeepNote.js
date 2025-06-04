@@ -360,7 +360,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     function resetDisplay() {
         const viewport = document.getElementById('main-viewer');
-        viewport.innerHTML = '<div class="viewport"></div>'
+        viewport.innerHTML = '<div id="viewport" class="flex flex-col justify-center items-center"><div id="filter-status" class="flex flex-row text-lg font-light"></div><div id="osc-grid" class="grid grid-cols-6 gap-3 text-sm font-light"></div></div>'
     }
 
     const startButton = document.querySelector("#startButton");
