@@ -309,6 +309,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         const visualizers = [];
 
+        var allTargets = [];
+
         const oscillatorArray = Array.from({ length: totalOsc }).map((x, index) => {
             const frequency = Math.floor(Math.random() * rangeHz) + baseHz;
             const pan = parseFloat(((Math.random() * 2) - 1).toFixed(2));
@@ -338,7 +340,22 @@ document.addEventListener("DOMContentLoaded", async function () {
             const visualizer = new OscillatorVisualizer(`canvas-${index}`, analyser);
             visualizers.push(visualizer);
 
-            const targetFreq = targetFrequencies[index % targetFrequencies.length];
+            const selectedTarget = targetFrequencies[index % targetFrequencies.length];
+
+            function createDeviation(selected) {
+                let targetFreq;
+                do {
+                    const factor = parseFloat((Math.random() * 0.3).toFixed(2));
+                    const plusMinus = parseInt(Math.random() < 0.5 ? -1 : 1);
+                    const deviation = (factor * plusMinus);
+                    targetFreq = (selected + deviation);
+                } while (allTargets.includes(targetFreq));
+                allTargets.push(targetFreq);
+                return targetFreq;
+            }
+
+            var targetFreq = createDeviation(selectedTarget);
+
             oscNode.targetFrequency = targetFreq;
             oscNode.gainNode = gainNode;
             oscNode.pannerNode = pannerNode;
@@ -391,9 +408,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             animateVisualizers(visualizers);
 
             audioCtx.resume().then(() => {
-
-                console.log(`Time: ${totalTime}, Osc: ${totalOsc}, Resolve: ${timeOfResolve}, Hold: ${timeOfHold}`)
-
                 oscillatorArray.forEach((oscNode, index) => {
                     oscNode.start();
                 });
