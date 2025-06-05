@@ -346,9 +346,11 @@ document.addEventListener("DOMContentLoaded", async function () {
                 let targetFreq;
                 do {
                     const deviation = parseFloat(
-                        ((((((Math.random() * 30)) / 100).toFixed(2)) * selected).toFixed(2)) * (Math.floor(((Math.random * 100) - 50) / 1000))
+                        parseFloat((((((Math.random() * 30)) / 100).toFixed(2)) * selected).toFixed(2)) * parseFloat(Math.floor(((Math.random * 100) - 50) / 1000))
                     );
+                    console.log(deviation) // TODO REMOVE
                     targetFreq = parseFloat((selected + deviation).toFixed(2));
+                    console.log(targetFreq) // TODO REMOVE
                 } while (allTargets.includes(targetFreq));
                 allTargets.push(targetFreq);
                 return targetFreq;
