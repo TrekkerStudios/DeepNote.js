@@ -345,16 +345,10 @@ document.addEventListener("DOMContentLoaded", async function () {
             function createDeviation(selected) {
                 let targetFreq;
                 do {
-                    const factor = parseFloat((((((Math.random() * 30)) / 100).toFixed(2)) * selected).toFixed(2));
-                    console.log(factor);
-                    const plusMinus = parseFloat(Math.floor(((Math.random * 100) - 50) / 1000));
-                    console.log(plusMinus);
-                    const deviation = parseFloat(
-                        factor * plusMinus
-                    );
-                    console.log(deviation) // TODO REMOVE
-                    targetFreq = parseFloat((selected + deviation).toFixed(2));
-                    console.log(targetFreq) // TODO REMOVE
+                    const factor = parseFloat((Math.random() * 0.3).toFixed(2));
+                    const plusMinus = parseInt(Math.random() < 0.5 ? -1 : 1);
+                    const deviation = (factor * plusMinus);
+                    targetFreq = (selected + deviation);
                 } while (allTargets.includes(targetFreq));
                 allTargets.push(targetFreq);
                 return targetFreq;
