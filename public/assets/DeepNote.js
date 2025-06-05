@@ -339,7 +339,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             visualizers.push(visualizer);
 
             const targetFreq = targetFrequencies[index % targetFrequencies.length];
-            oscNode.targetFrequency = targetFreq;
+            const deviation = Math.floor((((Math.random() * 20) - 10) / 100)).toFixed(2);
+            console.log(targetFreq+deviation); // Remove later
+            oscNode.targetFrequency = (targetFreq + deviation);
             oscNode.gainNode = gainNode;
             oscNode.pannerNode = pannerNode;
             oscNode.analyser = analyser;
