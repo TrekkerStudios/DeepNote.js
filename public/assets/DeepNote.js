@@ -338,10 +338,10 @@ document.addEventListener("DOMContentLoaded", async function () {
             const visualizer = new OscillatorVisualizer(`canvas-${index}`, analyser);
             visualizers.push(visualizer);
 
-            const targetFreq = targetFrequencies[index % targetFrequencies.length];
+            const selectedTarget = targetFrequencies[index % targetFrequencies.length];
             const deviation = (((Math.random() * 50) - 25) / 100).toFixed(2);
-            console.log(targetFreq+deviation); // Remove later
-            oscNode.targetFrequency = (targetFreq + deviation);
+            const targetFreq = (selectedTarget + deviation).toFixed(2);
+            oscNode.targetFrequency = targetFreq;
             oscNode.gainNode = gainNode;
             oscNode.pannerNode = pannerNode;
             oscNode.analyser = analyser;
