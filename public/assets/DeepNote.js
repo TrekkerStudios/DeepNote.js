@@ -343,17 +343,18 @@ document.addEventListener("DOMContentLoaded", async function () {
             const selectedTarget = targetFrequencies[index % targetFrequencies.length];
 
             function createDeviation(selected) {
-                const deviation = parseFloat((((Math.random() * 50) - 25) / 100).toFixed(2));
-                const targetFreq = parseFloat((selected + deviation).toFixed(2));
-                if (allTargets.includes(targetFreq)) {
-                    console.log("Deviation exists, retrying...")  // TODO REMOVE
-                    createDeviation(selected);
-                } else {
-                    console.log("Deviation found!")  // TODO REMOVE
-                    allTargets.push(targetFreq);
-                    return targetFreq;
-                }
-            };
+                let targetFreq;
+                do {
+                    console.log("Finding deviation...") // TODO REMOVE
+                    const deviation = parseFloat(
+                        (((Math.random() * 50) - 25) / 100).toFixed(2)
+                    );
+                    targetFreq = parseFloat((selected + deviation).toFixed(2));
+                } while (allTargets.includes(targetFreq));
+                console.log("Deviation found!") // TODO REMOVE
+                allTargets.push(targetFreq);
+                return targetFreq;
+            }
 
             var targetFreq = createDeviation(selectedTarget);
             console.log(targetFreq) // TODO REMOVE
