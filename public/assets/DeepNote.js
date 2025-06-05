@@ -309,6 +309,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         const visualizers = [];
 
+        var allTargets = [];
+
         const oscillatorArray = Array.from({ length: totalOsc }).map((x, index) => {
             const frequency = Math.floor(Math.random() * rangeHz) + baseHz;
             const pan = parseFloat(((Math.random() * 2) - 1).toFixed(2));
@@ -339,9 +341,23 @@ document.addEventListener("DOMContentLoaded", async function () {
             visualizers.push(visualizer);
 
             const selectedTarget = targetFrequencies[index % targetFrequencies.length];
-            const deviation = parseFloat((((Math.random() * 50) - 25) / 100).toFixed(2));
-            const targetFreq = parseFloat((selectedTarget + deviation).toFixed(2));
-            console.log(targetFreq); //TODO REMOVE
+
+            function createDeviation(selected) {
+                const deviation = parseFloat((((Math.random() * 50) - 25) / 100).toFixed(2));
+                const targetFreq = parseFloat((selected + deviation).toFixed(2));
+                if (allTargets.includes(targetFreq)) {
+                    console.log("Deviation exists, retrying...")  // TODO REMOVE
+                    createDeviation(selected);
+                } else {
+                    console.log("Deviation found!")  // TODO REMOVE
+                    allTargets.push(targetFreq);
+                    return targetFreq;
+                }
+            };
+
+            var targetFreq = createDeviation(selectedTarget);
+            console.log(targetFreq) // TODO REMOVE
+
             oscNode.targetFrequency = targetFreq;
             oscNode.gainNode = gainNode;
             oscNode.pannerNode = pannerNode;
