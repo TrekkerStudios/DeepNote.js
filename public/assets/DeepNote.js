@@ -355,7 +355,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
 
             var targetFreq = createDeviation(selectedTarget);
-            console.log("Deviation: " + selectedTarget + " -> " + targetFreq) // TODO REMOVE
 
             oscNode.targetFrequency = targetFreq;
             oscNode.gainNode = gainNode;
@@ -409,9 +408,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             animateVisualizers(visualizers);
 
             audioCtx.resume().then(() => {
-
-                console.log(`Time: ${totalTime}, Osc: ${totalOsc}, Resolve: ${timeOfResolve}, Hold: ${timeOfHold}`)
-
                 oscillatorArray.forEach((oscNode, index) => {
                     oscNode.start();
                 });
