@@ -345,13 +345,11 @@ document.addEventListener("DOMContentLoaded", async function () {
             function createDeviation(selected) {
                 let targetFreq;
                 do {
-                    console.log("Finding deviation...") // TODO REMOVE
                     const deviation = parseFloat(
-                        (((Math.random() * 50) - 25) / 100).toFixed(2)
+                        (((Math.random() * 80) - 40) / 100).toFixed(2)
                     );
                     targetFreq = parseFloat((selected + deviation).toFixed(2));
                 } while (allTargets.includes(targetFreq));
-                console.log("Deviation found!") // TODO REMOVE
                 allTargets.push(targetFreq);
                 return targetFreq;
             }
