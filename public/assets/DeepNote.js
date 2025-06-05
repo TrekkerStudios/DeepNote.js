@@ -346,7 +346,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 let targetFreq;
                 do {
                     const deviation = parseFloat(
-                        (((Math.random() * 80) - 40) / 100).toFixed(2)
+                        ((((((Math.random() * 30)) / 100).toFixed(2)) * selected).toFixed(2)) * (Math.floor(((Math.random * 100) - 50) / 1000))
                     );
                     targetFreq = parseFloat((selected + deviation).toFixed(2));
                 } while (allTargets.includes(targetFreq));
@@ -355,7 +355,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
 
             var targetFreq = createDeviation(selectedTarget);
-            console.log(targetFreq) // TODO REMOVE
+            console.log("Deviation: " + selectedTarget + " -> " + targetFreq) // TODO REMOVE
 
             oscNode.targetFrequency = targetFreq;
             oscNode.gainNode = gainNode;
