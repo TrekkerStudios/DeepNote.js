@@ -11,7 +11,7 @@ export const Layout = (props) => (
       <link rel="icon" href="/assets/favicon.png" />
       <link rel="preconnect" href="https://rsms.me/" />
       <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-      <link rel="stylesheet" href="/assets/_virtual_cloudflare-pages-entry-module.css" />
+      <link rel="stylesheet" href="/assets/style.css" />
       <title>{props.title}</title>
       <meta name="description" content={props.desc} />
       <meta name="plea" content="thx/lucasarts don't sue me plz it's all educational" />
